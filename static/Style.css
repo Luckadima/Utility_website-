@@ -1,0 +1,152 @@
+body{
+    background-color: whitesmoke ;
+}
+html, body {
+    height: 100%;
+}
+
+#headtitles {
+    display: flex;    
+    margin-left: 65%;
+    margin-top: 2%;
+    font-family: 'Poppins', sans-serif;
+}
+
+#title {
+    font-size: 30px;
+    margin-left: 10%;
+    font-weight: bold;
+}
+#titles {
+    font-size: 12px;
+    margin-left: 10%;
+
+}
+ul {
+    display: flex; 
+    align-items: center;
+    gap: 40px; 
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    
+}
+li {
+    font-size: 13px;
+    font-weight: bold;
+    text-decoration: none;
+}
+i {
+    font-size: 15px;
+    color: black;
+    margin-left: 10px; 
+}
+a{
+    text-decoration: none;
+    color: black;
+}
+
+#titles a:hover{
+    color: cornflowerblue;
+
+}
+
+
+
+#content{
+    padding: 20px;
+    margin-top: 10%;
+}
+#sub-content1{
+    font-family: 'Poppins', sans-serif;
+    font-size: 48px;
+    letter-spacing: 8px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    color: white;
+}
+#sub-content2{
+    font-family: 'Roboto', sans-serif;
+    font-size: 18px;
+    line-height: 1.6;
+    color: white;
+    max-width: 500px;
+}
+#LandingPageImage img {
+    width: 40%;
+    height: 6%;
+    margin-left: 50%;
+    margin-top: -25%;
+}
+
+.footer {
+    background-color: #1a1a1a;
+    color: #fff;
+    padding: 10px 40px;
+    font-family: 'Arial', sans-serif;
+    margin-top: 30%;
+  }
+  
+  .footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+    
+  }
+  .footer-social{
+   margin-top: 2%;
+  }
+  
+  .footer-social a {
+    color: #c6ff00;
+    font-size: 24px;
+    margin-right: 20px;
+    text-decoration: none;
+    transition: color 0.9s ease;
+  }
+
+  .footer-social i {
+    color: #c6ff00;
+    font-size: 20px;
+    margin-right: 10px;
+    text-decoration: none;
+    transition: color 0.9s ease;
+  }
+  
+  .footer-social a:hover {
+    color: cornflowerblue;
+  }
+  
+  .footer-links {
+    display: flex;
+    gap: 60px;
+    flex-wrap: wrap;
+  }
+  
+  .footer-column h4 {
+    margin-bottom: 12px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #ffffff;
+  }
+  
+  .footer-column a {
+    display: block;
+    color: #cccccc;
+    text-decoration: none;
+    margin-bottom: 8px;
+    font-size: 14px;
+    transition: color 0.3s ease;
+  }
+  
+  .footer-column a:hover {
+    color: blue;
+  }
+  #background {
+    margin-top: -9%; /* Adds space above the element */
+    position: relative; /* Keeps the background positioned within its parent */
+    width: 100%; /* Full width for consistency */
+}
+
+

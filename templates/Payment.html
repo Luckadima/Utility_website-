@@ -1,0 +1,340 @@
+<!DOCTYPE html> 
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.19.0/dist/tf.min.js"></script>
+  <link rel="stylesheet" href="/PayStyle.css" />
+  <script src="https://kit.fontawesome.com/fc7f46e176.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Payments</title>
+</head>
+<body>
+  <div id="ai-overlay" style="display: none;"></div>
+
+  <div class="sidebar">
+    <h2>Bill</h2>
+    <ul>
+      <li><a href="/LandingPage.html">Home</a></li>
+      <li id="AllUtility"><a href="/AllUtility.html">Utility Usage & Alerts</a></li>
+      <li><a href="/Transaction.html">Transactions</a></li>
+      <li id="signout">
+        <a href="/LogIn.html"><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10%;"></i>SignOut</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <br /><br /><br /><br />
+    <h1>Payment & Top-Up</h1>
+    <hr />
+
+    <div id="Transaction">
+      <h2>Pay for:</h2>
+      <form id="payment-form">
+        <label><input type="radio" name="option" value="1" checked /> Electricity</label>
+        <label><input type="radio" name="option" value="2" /> Water</label>
+        <label><input type="radio" name="option" value="3" /> Gas</label>
+
+        <div id="address-container" style="margin-top: 10px; display:none;">
+          <p><b>Enter your address:</b></p>
+          <input type="text" id="address" placeholder="Your address for gas delivery" />
+        </div>
+
+        <div id="meter-inputs" style="margin-top:10px;">
+          <div id="electricity-meter-div">
+            <p>Electricity Meter Number</p>
+            <input type="text" id="electricityMeterInput" readonly style="background-color:white; margin-bottom: 10px; border-color: white; border-style: none;" />
+          </div>
+          <div id="water-meter-div" style="display:none;">
+            <p>Water Meter Number</p>
+            <input type="text" id="waterMeterInput" readonly style="background-color:white; margin-bottom: 10px; border-color: white; border-style: none;" />
+          </div>
+        </div>
+
+        <div id="payment-details" style="margin-top:10px;">
+          <p>Amount</p>
+          <input type="decimal" name="amount" id="amount" placeholder="Enter amount" maxlength="6" required />
+
+          <p>Card Number</p>
+          <input type="text" id="card-number" placeholder="0000 0000 0000 0000" maxlength="19" required />
+
+          <p>Expiration Date</p>
+          <div id="column">
+            <div id="card">
+              <input type="text" id="expiry" placeholder="MM/YY" maxlength="5" required />
+            </div>
+
+            <p id="mobile">CVV</p>
+            <div>
+              <input type="text" id="cvv" placeholder="***" maxlength="3" required />
+            </div>
+          </div>
+
+          <div id="saveinfo">
+            <input type="checkbox" id="saveCheckbox" />
+            <label for="saveCheckbox" style="font-size: 12px;">Save card details</label>
+          </div>
+        </div>
+
+        <div id="gas-supplier-info" style="display:none; margin-top: 20px;">
+          <h3>Nearest Gas Supplier</h3>
+          <p id="supplier-name"></p>
+          <p id="supplier-address"></p>
+          <p id="supplier-phone"></p>
+          <p id="supplier-email"></p>
+          <a id="supplier-website" href="#" target="_blank"></a>
+          <div id="map" style="height: 300px; width: 100%; margin-top: 10px;"></div>
+        </div>
+
+        <div id="makepayment" style="margin-top: 20px;">
+          <button id="pay" type="submit">Pay</button>
+          <p id="info">
+            Your personal data will be used to process your order, support your experience throughout this website, and comply with the privacy policy.
+          </p>
+        </div>
+      </form>
+
+      <div id="flash-message" class="flash-message"></div>
+
+      <button id="ai-toggle-button" title="AI Help">
+        <i class="fa-solid fa-robot"></i>
+      </button>
+
+      <div id="ai-panel" style="display: none;">
+        <p>Want AI to help with your utility payments? Our AI predicts your daily utility usage and suggests the perfect top-up amount to last your chosen duration, making budgeting easier!</p>
+        <button id="btn-ai-yes">Yes</button>
+        <button id="btn-ai-no">No</button>
+        <div id="ai-options" style="display: none;">
+          <p>Choose duration:</p>
+          <button onclick="triggerPrediction(1)">1 Day</button>
+          <button onclick="triggerPrediction(7)">1 Week</button>
+          <button onclick="triggerPrediction(14)">2 Weeks</button>
+          <button onclick="triggerPrediction('month')">1 Month</button>
+          <div id="ai-result"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { trainModel, predictUsage } from '/js/trainModel.js';
+
+    window.triggerPrediction = function(duration) {
+      const selectedOption = document.querySelector('input[name="option"]:checked').value;
+      predictUsage(selectedOption, duration);
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const aiToggleButton = document.getElementById('ai-toggle-button');
+      const aiPanel = document.getElementById('ai-panel');
+      const aiOverlay = document.getElementById('ai-overlay');
+      const btnYes = document.getElementById('btn-ai-yes');
+      const btnNo = document.getElementById('btn-ai-no');
+      const aiOptions = document.getElementById('ai-options');
+
+      const gasRadio = document.querySelector('input[value="3"]');
+      const elecRadio = document.querySelector('input[value="1"]');
+      const waterRadio = document.querySelector('input[value="2"]');
+
+      const addressContainer = document.getElementById('address-container');
+      const gasSupplierInfo = document.getElementById('gas-supplier-info');
+      const addressInput = document.getElementById('address');
+      const paymentDetails = document.getElementById('payment-details');
+      const electricityMeterDiv = document.getElementById('electricity-meter-div');
+      const waterMeterDiv = document.getElementById('water-meter-div');
+
+      let gasMap = null;
+
+      const user = JSON.parse(localStorage.getItem("userData")) || {};
+      const elecInput = document.getElementById('electricityMeterInput');
+      const waterInput = document.getElementById('waterMeterInput');
+
+      if (elecInput && user.electricityMeter) elecInput.value = user.electricityMeter;
+      if (waterInput && user.waterMeter) waterInput.value = user.waterMeter;
+
+      function showAiPanel() {
+        aiPanel.style.display = 'block';
+        aiOverlay.style.display = 'block';
+        aiOptions.style.display = 'none';
+      }
+
+      function hideAiPanel() {
+        aiPanel.style.display = 'none';
+        aiOverlay.style.display = 'none';
+        aiOptions.style.display = 'none';
+      }
+
+      aiToggleButton.addEventListener('click', showAiPanel);
+      btnNo.addEventListener('click', hideAiPanel);
+      aiOverlay.addEventListener('click', hideAiPanel);
+
+      btnYes.addEventListener('click', () => {
+        aiOptions.style.display = 'block';
+        if (typeof trainModel === 'function') trainModel();
+      });
+
+      function updateUI() {
+        const payButton = document.getElementById('pay');
+        if (elecRadio.checked) {
+          electricityMeterDiv.style.display = 'block';
+          waterMeterDiv.style.display = 'none';
+          addressContainer.style.display = 'none';
+          gasSupplierInfo.style.display = 'none';
+          paymentDetails.style.display = 'block';
+          payButton.style.display = 'inline-block';
+          clearMap();
+        } else if (waterRadio.checked) {
+          electricityMeterDiv.style.display = 'none';
+          waterMeterDiv.style.display = 'block';
+          addressContainer.style.display = 'none';
+          gasSupplierInfo.style.display = 'none';
+          paymentDetails.style.display = 'block';
+          payButton.style.display = 'inline-block';
+          clearMap();
+        } else if (gasRadio.checked) {
+          electricityMeterDiv.style.display = 'none';
+          waterMeterDiv.style.display = 'none';
+          addressContainer.style.display = 'block';
+          paymentDetails.style.display = 'none';
+          payButton.style.display = 'none';
+        }
+      }
+
+      function clearMap() {
+        if (gasMap) {
+          gasMap.remove();
+          gasMap = null;
+        }
+        document.getElementById('map').innerHTML = '';
+      }
+
+      let suppliers = [];
+      fetch('gasSuppliers.json')
+        .then(res => res.json())
+        .then(data => suppliers = data)
+        .catch(err => console.error('Failed to load gasSuppliers.json:', err));
+
+      function findNearestSupplier(addressInput) {
+        const addr = addressInput.toLowerCase();
+        return suppliers.find(s => s.address.toLowerCase().includes(addr));
+      }
+
+      function handleAddressSearch() {
+        const userAddress = addressInput.value.trim();
+        if (!userAddress) {
+          alert('Please enter your address to find nearest gas supplier.');
+          gasSupplierInfo.style.display = 'none';
+          clearMap();
+          return;
+        }
+
+        const supplier = findNearestSupplier(userAddress);
+        if (!supplier) {
+          alert('No gas supplier found for this address.');
+          gasSupplierInfo.style.display = 'none';
+          clearMap();
+          return;
+        }
+
+        document.getElementById('supplier-name').textContent = supplier.name;
+        document.getElementById('supplier-address').textContent = supplier.address;
+        document.getElementById('supplier-phone').textContent = `Phone: ${supplier.phone}`;
+        document.getElementById('supplier-email').textContent = `Email: ${supplier.email}`;
+        const websiteLink = document.getElementById('supplier-website');
+        websiteLink.textContent = supplier.website;
+        websiteLink.href = supplier.website;
+
+        gasSupplierInfo.style.display = 'block';
+        clearMap();
+        gasMap = L.map('map').setView([supplier.lat, supplier.lng], 13);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { maxZoom: 19 }).addTo(gasMap);
+        L.marker([supplier.lat, supplier.lng])
+          .addTo(gasMap)
+          .bindPopup(`<b>${supplier.name}</b><br>${supplier.address}`)
+          .openPopup();
+        setTimeout(() => gasMap.invalidateSize(), 200);
+      }
+
+      addressInput.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          handleAddressSearch();
+        }
+      });
+
+      addressInput.addEventListener('change', handleAddressSearch);
+
+      document.querySelectorAll('input[name="option"]').forEach(radio => {
+        radio.addEventListener('change', updateUI);
+      });
+
+      updateUI();
+
+      document.getElementById('card-number').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '').substring(0, 16);
+        e.target.value = value.replace(/(.{4})/g, '$1 ').trim();
+      });
+
+      document.getElementById('expiry').addEventListener('input', function (e) {
+        let value = e.target.value.replace(/\D/g, '').slice(0, 4);
+        if (value.length > 2) value = value.slice(0, 2) + '/' + value.slice(2);
+        e.target.value = value;
+      });
+
+      document.getElementById('payment-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const selectedOption = document.querySelector('input[name="option"]:checked').value;
+        const flashMessage = document.getElementById('flash-message');
+        const amount = parseFloat(document.getElementById('amount').value);
+
+        if (isNaN(amount) || amount <= 0) {
+          flashMessage.textContent = "Please enter a valid amount.";
+          flashMessage.style.color = "red";
+          return;
+        }
+
+        let utility = "", unit = "", value = 0;
+        if (selectedOption === "1") {
+          utility = "Electricity";
+          unit = "kWh";
+          value = amount * 1.17;
+          const prev = parseFloat(localStorage.getItem("totalElectricityKwh")) || 0;
+          localStorage.setItem("totalElectricityKwh", (prev + value).toFixed(2));
+        } else if (selectedOption === "2") {
+          utility = "Water";
+          unit = "liters";
+          value = amount * 40;
+          const prev = parseFloat(localStorage.getItem("totalWaterLiters")) || 0;
+          localStorage.setItem("totalWaterLiters", (prev + value).toFixed(2));
+        } else if (selectedOption === "3") {
+          utility = "Gas";
+          unit = "m³";
+          value = amount * 0.02;
+          const prev = parseFloat(localStorage.getItem("totalGasCubicMeters")) || 0;
+          localStorage.setItem("totalGasCubicMeters", (prev + value).toFixed(2));
+        }
+
+        const now = new Date();
+        const msg = `${utility} purchased: ${value.toFixed(2)} ${unit} for R${amount.toFixed(2)} at ${now.toLocaleString()}`;
+        const history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+        history.unshift(msg);
+        localStorage.setItem('transactionHistory', JSON.stringify(history));
+
+        flashMessage.textContent = `${utility} payment successful!`;
+        flashMessage.style.color = 'green';
+
+        setTimeout(() => window.location.href = "/AllUtility.html", 2000);
+      });
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+
+

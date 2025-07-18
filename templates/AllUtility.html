@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://kit.fontawesome.com/fc7f46e176.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="/AllStyle.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All utilities</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Bill</h2>
+        <ul>
+            <li><a href="/LandingPage.html">Home</a></li>
+            <li id="AllUtility"><a href="/AllUtility.html">Utility Usage & Alerts</a></li>
+            <li><a href="/Payment.html">Payment & Top-up</a></li>
+            <li><a href="/Transaction.html">Transactions</a></li>
+            <li id="signout">
+                <a href="/LogIn.html"><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10%;"></i>SignOut</a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="content">
+        <h1>
+            Current Usage
+            <span class="icons">
+            <a href="/UserProfile..html">
+                <i class="fa-regular fa-circle-user"></i>
+            </a>
+            <i class="fa-regular fa-bell"></i>
+            </span>
+
+        </h1>
+
+        <div id="CurrentContainer">
+            <div class="column">
+                <h1>Electricity</h1>
+                <div id="Electricitypercent">
+                    <a href="/ElectricityUsage.html">
+                        <p>75%</p>
+                    </a>
+                </div>
+            </div>
+    
+            <div class="column">
+                <h1>Water </h1>
+                <div id="Waterpercent">
+                    <a href="/WaterUsage.html">
+                        <p>45%</p>
+                    </a>
+                </div>
+            </div>
+
+            <div class="column">
+                <h1>Gas</h1>
+                <div id="Gaspercent">
+                    <a href="/GasUsage.html">
+                        <p>55%</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div id="Loadsheddingcontent">
+            <p1>Upcoming Load-shedding</p1>
+                <div id="loadshedding-info">Loading…</div>
+
+            <div id="WaterOutageContent">
+                <p1>Water Outages</p1>
+                <div id="water-outage-info">Loading…</div>
+            </div>
+
+        </div>
+        <script type="module" src="/js/utilityStatus.js"></script>
+
+
+        <div id="Transactions">
+            <p>Recent Transactions</p>
+            <div id="history">
+                <!-- Recent transaction data will appear here -->
+            </div>
+        </div>
+    </div>
+
+<script>
+    // Load and display all transactions from localStorage
+    window.addEventListener('DOMContentLoaded', () => {
+        const historyDiv = document.getElementById('history');
+        let history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+
+        history.forEach((transaction, index) => {
+            const container = document.createElement('div');
+            container.style.position = 'relative';
+            container.style.marginBottom = '10px';
+            container.style.display = 'flex';
+            container.style.alignItems = 'center';
+
+            // Light grey box
+            const entry = document.createElement('p');
+            entry.textContent = transaction;
+            entry.style.padding = "10px";
+            entry.style.background = "lightgrey";
+            entry.style.borderRadius = "5px";
+            entry.style.width = "60%";
+            entry.style.margin = 0;
+
+            // "X" delete button
+            const removeBtn = document.createElement('button');
+            removeBtn.textContent = '✖';
+            removeBtn.style.marginLeft = "10px";
+            removeBtn.style.border = "none";
+            removeBtn.style.background = "transparent";
+            removeBtn.style.cursor = "pointer";
+            removeBtn.style.fontSize = "16px";
+            removeBtn.title = "Remove";
+
+            // Remove logic
+            removeBtn.addEventListener('click', () => {
+                history.splice(index, 1);
+                localStorage.setItem('transactionHistory', JSON.stringify(history));
+                container.remove();
+            });
+
+            container.appendChild(entry);
+            container.appendChild(removeBtn);
+            historyDiv.appendChild(container);
+        });
+    });
+</script>
+
+</body>
+</html>
+

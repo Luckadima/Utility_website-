@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="/ElecticityStyle.css">
+  <link rel="stylesheet" href="/AllStyle.css">
+  <script src="https://kit.fontawesome.com/fc7f46e176.js" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electricity</title>
+</head>
+<body>
+  <div class="sidebar">
+    <h2>Bill</h2>
+    <ul>
+      <li><a href="/LandingPage.html">Home</a></li>
+      <li id="AllUtility"><a href="/AllUtility.html">Utility Usage & Alerts</a></li>
+      <li><a href="/Payment.html">Payment & Top-up</a></li>
+      <li><a href="/Transaction.html">Transactions</a></li>
+      <li id="signout">
+        <a href="/LogIn.html"><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10%;"></i>SignOut</a>
+      </li>
+    </ul>
+  </div>
+
+  <div id="content">
+    <a href="/AllUtility.html"><i class="fas fa-arrow-left"></i></a>
+    <h1>Electricity Usage</h1>
+
+    <div id="column">
+      <div id="PieChart">
+        <div class="chart-container">
+          <canvas id="pieCanvas" width="200" height="200"></canvas>
+          <p class="chart-text">of total electricity usage</p>
+        </div>
+      </div>
+
+      <div id="Graph">
+        <div class="chart-container">
+          <canvas id="barCanvas" width="300" height="200"></canvas>
+          <p class="chart-text" id="electricity-reading"></p>
+        </div>
+      </div>
+    </div>
+
+    <div id="column2">
+      <div id="appliance">
+        <h2>Appliance Usage</h2>
+        <div class="content-container">
+          <ul>
+            <li><i class="fa-solid fa-lightbulb"></i> Lights</li>
+            <li><i class="fas fa-snowflake"></i> Refrigerator</li>
+            <li><i class="fas fa-tv"></i> TV</li>
+            <li><i class="fas fa-fire"></i> Stove</li>
+            <li><i class="fas fa-shower"></i> Geyser</li>
+          </ul>
+
+          <div id="measurements">
+            <ul>
+              <li>20<span>kWh</span></li>
+              <li>8 <span>kWh</span></li>
+              <li>8 <span>kWh</span></li>
+              <li>5 <span>kWh</span></li>
+              <li>15 <span>kWh</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="usage">
+      <h2>Usage Limit <i class="fas fa-toggle-on"></i></h2>
+      <p class="bold-text">Limit Percentage: <strong>40%</strong></p>
+    </div>
+  </div>
+
+  <script>
+    function updateElectricityUsage() {
+      const reading = document.getElementById("electricity-reading");
+      const totalElectricityKwh = parseFloat(localStorage.getItem("totalElectricityKwh")) || 0;
+      reading.textContent = `${totalElectricityKwh.toFixed(2)} kWh currently available`;
+    }
+
+    updateElectricityUsage();
+
+    const pieCanvas = document.getElementById("pieCanvas").getContext("2d");
+
+    Chart.register({
+      id: 'centerText',
+      beforeDraw(chart) {
+        if (chart.canvas.id === 'pieCanvas') {
+          const ctx = chart.ctx;
+          const { width, height } = chart;
+
+          ctx.clearRect(0, 0, width, height);
+
+          const fontSize = Math.floor(width / 8);
+          const text = "75%";
+          ctx.font = `${fontSize}px Arial`;
+          ctx.textAlign = "center";
+          ctx.textBaseline = "middle";
+          ctx.fillStyle = "black";
+
+          const xPos = width / 2;
+          const yPos = height / 2;
+          ctx.fillText(text, xPos, yPos);
+        }
+      }
+    });
+
+    new Chart(pieCanvas, {
+      type: "doughnut",
+      data: {
+        datasets: [{
+          data: [75, 25],
+          backgroundColor: ["purple", "darkgrey"],
+          borderWidth: 0
+        }]
+      },
+      options: {
+        responsive: false,
+        cutout: "70%",
+        plugins: {
+          tooltip: { enabled: false }
+        },
+        animation: { duration: 0 }
+      }
+    });
+
+    const barCanvas = document.getElementById("barCanvas").getContext("2d");
+
+    new Chart(barCanvas, {
+      type: "bar",
+      data: {
+        labels: ["", "", ""],
+        datasets: [{
+          data: [70, 50, 70],
+          backgroundColor: ["lightgray", "lightgray", "lightgray"],
+          borderRadius: 10,
+          barThickness: 30,
+        }]
+      },
+      options: {
+        responsive: false,
+        plugins: {
+          legend: { display: false }
+        },
+        scales: {
+          x: { display: false },
+          y: { display: false }
+        },
+        layout: {
+          padding: { left: 130, bottom: 20 }
+        }
+      }
+    });
+  </script>
+</body>
+</html>

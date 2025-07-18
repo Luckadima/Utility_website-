@@ -1,0 +1,128 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white !important;
+}
+html{
+    background-color: white;
+}
+
+.contact-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 55vh;
+    background-color: white;
+
+}
+
+.contact-img {
+    flex: 1;
+    min-width: 300px;
+}
+
+.contact-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.contact-form {
+    background-color: white;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contact-form h2 {
+    color: darkblue;
+    margin-bottom: 10px;
+}
+
+.contact-form p {
+    color: #333;
+    margin-bottom: 30px;
+}
+
+.input-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 6px;
+    transform: translateY(-50%);
+    color: #888;
+}
+.input-wrapper-message{
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.input-wrapper-message i{
+    position: absolute;
+    top: 16%;
+    left: 6px;
+    transform: translateY(-50%);
+    color: #888;
+}
+
+.input-wrapper input,
+.input-wrapper textarea {
+    width: 95%;
+    padding: 12px 12px 12px 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgray;
+    transition: border 0.3s ease-in-out;
+}
+
+.input-wrapper input:hover,
+.input-wrapper textarea:hover {
+    border: 2px solid #3f7aff;
+    background-color: white;
+}
+
+
+
+
+.input-wrapper-message input,
+.input-wrapper-message textarea {
+    width: 95%;
+    padding: 12px 12px 12px 35px;
+    border: none;
+    border-radius: 5px;
+    background-color: lightgray;
+    transition: border 0.3s ease-in-out;
+}
+
+.input-wrapper-message input:hover,
+.input-wrapper-message textarea:hover {
+    border: 2px solid #3f7aff;
+    background-color: white;
+}
+
+textarea {
+    resize: vertical;
+    height: 100px;
+}
+
+button {
+    background-color: darkblue;
+    color: white;
+    border: none;
+    padding: 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease-in-out;
+}
+
+button:hover {
+    background-color: #3f7aff;
+}
+#headtitles{
+    background-color: white;
+}

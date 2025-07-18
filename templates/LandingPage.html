@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Landing Page</title>
+
+    <!-- Updated CSS link -->
+    <link rel="stylesheet" href="/Style.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vanta@0.5.24/dist/vanta.net.min.js"></script>
+</head>
+<body>
+    <header id="headtitles">
+        <nav id="titles">
+            <ul>
+                <li><a href="/LogIn.html">LOGIN</a></li>
+                <li><a href="/SignUp.html">SIGN UP</a></li>
+                <li><a href="/ContactUs.html">CONTACT US</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="background">
+        <main id="content">
+            <h1 id="sub-content1">Monitor Your<br>Utility Bill</h1>
+            <p id="sub-content2">
+                In just a few clicks, get your utility rates, pay your bill on time,<br>
+                and stay stress-free.
+            </p>
+        </main>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-social">
+                <a href="#"><i class="fab fa-x-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-youtube"></i></a>
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h4>Support</h4>
+                    <a href="#">Contact Us</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Explore</h4>
+                    <a href="#">Design</a>
+                    <a href="#">Prototyping</a>
+                    <a href="#">Development Features</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Resources</h4>
+                    <a href="#">Blog</a>
+                    <a href="#">Best Practices</a>
+                    <a href="#">Colors</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        VANTA.NET({
+            el: "#background",
+            mouseControls: true,
+            touchControls: true,
+            gyroControls: false,
+            minHeight: 570.00,
+            minWidth: 200.00,
+            scale: 1.00,
+            scaleMobile: 1.00,
+            color: 0x3f7aff,
+        });
+    </script>
+</body>
+</html>
+
+
+

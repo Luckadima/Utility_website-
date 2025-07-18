@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/SignUpStyle.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+</head>
+<body>
+    <header id="headtitles">
+        <nav id="titles">
+            <p>Sign Up</p>
+        </nav>
+    </header>
+
+    <div id="LoginContainer">
+    <div class="column">
+        <h1>Name</h1>
+        <div class="input-wrapper">
+            <i class="fas fa-user"></i>
+            <input type="text" id="name" placeholder="Enter your name">
+        </div>
+
+        <h1>Surname</h1>
+        <div class="input-wrapper">
+            <i class="fas fa-user-tag"></i>
+            <input type="text" id="surname" placeholder="Enter your surname">
+        </div>
+
+        <h1>Home Address</h1>
+        <div class="input-wrapper">
+            <i class="fas fa-home"></i>
+            <input type="text" id="address" placeholder="Enter your address">
+        </div>
+
+        <h1>Electricity Meter Number</h1>
+        <div class="input-wrapper">
+            <i class="fas fa-bolt"></i>
+            <input type="number" id="electricityMeter" maxlength="10" placeholder="Enter electricity meter">
+        </div>
+
+        <h1>Water Meter Number</h1>
+        <form id="uploadForm">
+          <i class="fas fa-tint"></i>
+          <input type="number" id="waterMeter" maxlength="10" placeholder="Enter water meter">
+        </form>
+
+        <button type="button" id="signupBtn">SIGN UP</button>
+    </div>
+
+    <div class="column">
+        <h1>Email</h1>
+        <div class="input-wrapper">
+            <i class="fas fa-envelope"></i>
+            <input type="text" id="email" placeholder="Enter your email">
+        </div>
+
+        <div class="input-wrapper">
+            <label for="password"><h1>Password</h1></label>
+            <i class="fas fa-lock"></i>
+            <input type="password" id="password" placeholder="Enter your password">
+            <i class="fas fa-eye" style="cursor: pointer;"
+                onclick="
+                const p = document.getElementById('password');
+                this.className = (p.type = p.type === 'password' ? 'text' : 'password') === 'text' 
+                    ? 'fas fa-eye-slash' 
+                    : 'fas fa-eye';
+                ">
+            </i>
+        </div>
+
+        <div class="input-wrapper">
+        <label for="confirmpassword"><h1>Confirm Password</h1></label>
+        <i class="fas fa-lock"></i>
+        <input type="password" id="confirmpassword" placeholder="Confirm password">
+        
+        <i class="fas fa-eye" style="cursor: pointer;"
+            onclick="
+            const cp = document.getElementById('confirmpassword');
+            this.className = (cp.type = cp.type === 'password' ? 'text' : 'password') === 'text' 
+                ? 'fas fa-eye-slash' 
+                : 'fas fa-eye';
+            ">
+        </i>
+        </div>
+    </div>
+</div>
+
+    <p>Already have an account? <a href="/LogIn.html">Login</a></p>
+
+    <script type="module">
+      import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
+      import { getAuth, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+      import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+
+      const firebaseConfig = {
+        apiKey: "AIzaSyAyTuSRW9VgHgLTaeErUm06JL63i2Wn1eU",
+        authDomain: "projectutility.firebaseapp.com",
+        projectId: "projectutility",
+        storageBucket: "projectutility.firebasestorage.app",
+        messagingSenderId: "454601325151",
+        appId: "1:454601325151:web:88f1db67060fd5c6d1f9ea"
+      };
+
+      const app = initializeApp(firebaseConfig);
+      const auth = getAuth(app);
+      const db = getDatabase(app);
+
+      document.getElementById('signupBtn').addEventListener('click', () => {
+        const email = document.getElementById('email').value.trim();
+        const password = document.getElementById('password').value.trim();
+        const confirmPassword = document.getElementById('confirmpassword').value.trim();
+
+        if (password !== confirmPassword) {
+          alert("Passwords do not match.");
+          return;
+        }
+
+        createUserWithEmailAndPassword(auth, email, password)
+          .then((userCredential) => {
+            const user = userCredential.user;
+
+            const userData = {
+              name: document.getElementById('name').value.trim(),
+              surname: document.getElementById('surname').value.trim(),
+              address: document.getElementById('address').value.trim(),
+              electricityMeter: document.getElementById('electricityMeter').value.trim(),
+              waterMeter: document.getElementById('waterMeter').value.trim(),
+              email: email
+            };
+
+            localStorage.setItem('waterMeter', userData.waterMeter);
+
+            set(ref(db, 'users/' + user.uid), userData)
+              .then(() => {
+                alert("Sign up successful!");
+                window.location.href = "/LogIn.html";
+              })
+              .catch((error) => {
+                alert("Failed to save user data: " + error.message);
+              });
+          })
+          .catch((error) => {
+            alert("Sign up failed: " + error.message);
+          });
+      });
+    </script>
+</body>
+</html>
+
+

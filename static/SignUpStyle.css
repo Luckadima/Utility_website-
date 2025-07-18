@@ -1,0 +1,161 @@
+body {
+    background-color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+}
+
+#titles p {
+    font-size: 24px;
+    margin-left: 5%;
+    margin-top: 2%;
+}
+
+#LoginContainer {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    margin: 20px 10%;
+    flex-wrap: wrap;
+}
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 300px;
+}
+
+#LoginContainer input {
+    background-color: lightgray;
+    border: none;
+    height: 35px;
+    border-radius: 5px;
+    width: 90%;
+    padding-left: 35px; 
+    padding-right: 35px; 
+    font-size: 14px;
+    transition: border 0.3s ease-in-out;
+    box-sizing: border-box;
+    color: #333;
+}
+
+#LoginContainer input:hover {
+    border: 2px solid blue;
+    transition-duration: 3s ease-in-out;
+}
+
+#LoginContainer input:focus {
+    outline: none;
+    border: 2px solid blue;
+    transition: 0.3s;
+}
+
+button {
+    margin-top: 20px;
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 60%;
+}
+
+button:hover {
+    background-color: #2f5aff;
+}
+
+p {
+    margin-top: 10px;
+    margin-left: 10%;
+}
+
+a {
+    color: #3f7aff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+h1 {
+    font-weight: lighter;
+    font-size: 16px;
+    margin-top: 10px;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 100%;
+    margin: 20px 0;
+    padding: 5;
+}
+#billImage{
+    background-color: whitesmoke !important;
+    margin-right: -10%;
+}
+#uploadForm i{
+    margin-left: 2%;
+    color: darkgray;
+}
+
+
+.input-wrapper label h1 {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    margin-left: 5px;
+}
+
+.input-wrapper i {
+    position: absolute;
+    top: 50%;
+    color: #888; 
+    font-size: 14px;
+    transform: translateY(-60%);
+    pointer-events: none; 
+}
+
+.input-wrapper i.fas.fa-user,
+.input-wrapper i.fas.fa-user-tag,
+.input-wrapper i.fas.fa-home,
+.input-wrapper i.fas.fa-bolt,
+.input-wrapper i.fas.fa-tint,
+.input-wrapper i.fas.fa-fire
+{
+    left: 10px;
+}
+
+.input-wrapper i.fas.fa-lock
+{
+    left: 10px;
+    top: 75%;
+}
+.input-wrapper i.fas.fa-envelope{
+     left: 10px;
+   
+}
+.input-wrapper i.fas.fa-eye,
+.input-wrapper i.fas.fa-eye-slash {
+    right: 80px !important;
+    cursor: pointer;
+    top: 80% !important;
+    transform: translateY(-60%);
+
+    pointer-events: auto;
+}
+
+#billImage:hover {
+    outline-color: whitesmoke !important;
+}
+
+#billImage:focus {
+    outline: 2px solid whitesmoke !important; /* Optional: control thickness */
+}
+
+#billImage {
+    outline: none !important; /* Remove default blue */
+    border: 1px solid whitesmoke !important; /* Add your own style if needed */
+}
