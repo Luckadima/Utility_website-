@@ -1,0 +1,56 @@
+[
+  {
+    "name": "SouthGas Distributors",
+    "address": "45 Ridge Rd, Rosettenville, Johannesburg, 2091",
+    "phone": "+27112225511",
+    "email": "contact@southgas.co.za",
+    "website": "https://southgas.co.za",
+    "lat": -26.2925,
+    "lng": 28.0659
+  },
+  {
+    "name": "Jozi Gas Suppliers",
+    "address": "89 South Rand Rd, Alberton, Johannesburg, 1449",
+    "phone": "+27113337744",
+    "email": "info@jozigas.co.za",
+    "website": "https://jozigas.co.za",
+    "lat": -26.2620,
+    "lng": 28.0876
+  },
+  {
+    "name": "Gauteng Gas Co.",
+    "address": "22 Kliprivier Dr, Eldorado Park, Johannesburg, 1811",
+    "phone": "+27118889900",
+    "email": "support@gautenggas.co.za",
+    "website": "https://gautenggas.co.za",
+    "lat": -26.2998,
+    "lng": 27.9883
+  },
+  {
+    "name": "Metro Gas Services",
+    "address": "11 Crown St, South Hills, Johannesburg, 2091",
+    "phone": "+27112224433",
+    "email": "sales@metrogas.co.za",
+    "website": "https://metrogas.co.za",
+    "lat": -26.2831,
+    "lng": 28.0467
+  },
+  {
+    "name": "Soweto Gas Distributors",
+    "address": "67 Chris Hani Rd, Soweto, Johannesburg, 1804",
+    "phone": "+27119991122",
+    "email": "contact@sowetogas.co.za",
+    "website": "https://sowetogas.co.za",
+    "lat": -26.2580,
+    "lng": 27.8540
+  },
+  {
+    "name": "Orange Gas Suppliers",
+    "address": "5 Orange Grove Rd, Orange Grove, Johannesburg, 2192",
+    "phone": "+27113331144",
+    "email": "info@orangegas.co.za",
+    "website": "https://orangegas.co.za",
+    "lat": -26.1691,
+    "lng": 28.0826
+  }
+]

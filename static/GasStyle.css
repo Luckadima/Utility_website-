@@ -1,0 +1,174 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 11px;
+}
+p1{
+    font-size: 22px;
+    color: black;
+    margin-left: 3%;
+    font-weight: bold;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+p, li, span {
+  font-size: 14px;
+}
+
+.sidebar {
+  width: 240px !important;
+  background-color: black;
+  color: white;
+  padding: 15px;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+  line-height: 1.5;
+}
+
+.sidebar h2 {
+  text-align: center;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 25px;
+}
+
+.sidebar ul li {
+  margin: 15px 0;
+}
+
+.sidebar ul li#signout a {
+  margin-top: 120%;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 6px 10px;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: darkblue;
+}
+
+#AllUtility {
+  background-color: darkblue;
+  border-radius: 5px;
+}
+
+#content i {
+  font-weight: bold;
+  margin-left: 10px;
+}
+
+#signout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#signout a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+#signout i {
+  margin-left: 5px;
+}
+
+#column {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  margin-top: 2%;
+  margin-bottom: 8%;
+}
+
+#column2 {
+  justify-content: center;
+  margin: 20px;
+  margin-left: 3%;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#appliance ul,
+#measurements ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#appliance ul li,
+#measurements ul li {
+  margin: 7px 0;
+}
+
+#appliance h1 {
+  margin-bottom: 20px;
+  font-size: 20px;
+}
+
+#measurements {
+  margin-right: 10%;
+}
+
+#measurements span {
+  color: blue;
+  font-weight: bold;
+  margin: 5px;
+}
+
+#usage {
+  margin-left: 20px;
+}
+
+#usage p {
+  font-weight: bold;
+}
+
+#usage i {
+  background-color: white;
+  color: blue;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  transform: scale(0.95); /* Slight scaling for neat layout */
+}
+
+.chart-text {
+  white-space: pre-line;
+}
+
+canvas {
+  margin-right: 10px;
+}
+
+#Graph {
+  margin-left: 18%;
+}

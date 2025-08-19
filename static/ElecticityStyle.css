@@ -1,0 +1,151 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 14px;
+}
+
+h1 {
+  font-size: 22px;
+  margin: 20px;
+}
+
+h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+p, li, span {
+  font-size: 14px;
+}
+
+.sidebar {
+  width: 250px !important; /* force width */
+  background-color: black;
+  color: white;
+  padding: 15px;
+  height: 100vh;
+  box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+
+.sidebar h2 {
+  text-align: center;
+  font-size: 22px;
+}
+
+.sidebar ul {
+  list-style-type: none;
+  padding: 20px 10px;
+}
+
+.sidebar ul li {
+  margin: 12px 0;
+}
+
+.sidebar ul li a {
+  color: white;
+  text-decoration: none;
+  display: block;
+  padding: 6px 8px;
+  border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+  background-color: darkblue;
+}
+
+#AllUtility {
+  background-color: darkblue;
+  border-radius: 5px;
+}
+
+#signout {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+#signout a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+}
+
+#signout i {
+  margin-left: 5px;
+}
+
+#content i {
+  margin-left: 10px;
+}
+
+#column {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin: 20px;
+  margin-top: 2%;
+  margin-bottom: 8%;
+}
+
+#column2 {
+  justify-content: center;
+  margin: 20px;
+  margin-left: 3%;
+}
+
+.content-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#appliance ul, #measurements ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+#appliance ul li, #measurements ul li {
+  margin: 7px 0;
+}
+
+#measurements {
+  margin-right: 10%;
+}
+
+#usage {
+  margin-left: 20px;
+}
+#usage i {
+  background-color: white;
+  color: blue;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chart-container {
+  display: flex;
+  align-items: center;
+  transform: scale(0.95);
+}
+
+.chart-text {
+  white-space: pre-line;
+}
+
+canvas {
+  margin-right: 10px;
+}
+
+#Graph {
+  margin-left: 10%;
+}
+
+.bold-text {
+  font-weight: bold;
+}
+

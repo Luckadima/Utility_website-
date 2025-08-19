@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="/GasStyle.css">
+    <link rel="stylesheet" href="/AllStyle.css">
+    <script src="https://kit.fontawesome.com/fc7f46e176.js" crossorigin="anonymous"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gas Usage</title>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Bill</h2>
+        <ul>
+            <li><a href="/LandingPage.html">Home</a></li>
+            <li id="AllUtility"><a href="/AllUtility.html">Utility Usage & Alerts</a></li>
+            <li><a href="/Payment.html">Payment & Top-up</a></li>
+            <li><a href="/Transaction.html">Transactions</a></li>
+            <li id="signout">
+                <a href="/LogIn.html"><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10%;"></i>SignOut</a>
+            </li>
+        </ul>
+    </div>
+
+    <div id="content">
+        <a href="/AllUtility.html"><i class="fas fa-arrow-left"></i></a>
+        <p></p>
+        <p1>Gas Usage</p1>
+
+        <div id="column">
+            <div id="PieChart">
+                <div class="chart-container">
+                    <canvas id="pieCanvas" width="200" height="200"></canvas>
+                    <p2 class="chart-text">of total Gas usage</p2>
+                </div>
+            </div>
+        
+            <div id="Graph">
+                <div class="chart-container">
+                    <canvas id="barCanvas" width="300" height="200"></canvas>
+                    <p3 class="chart-text" id="gas-usage">
+                        <!-- Updated dynamically -->
+                    </p3>
+                </div>
+            </div>
+        </div>
+
+        <div id="column2">
+            <div id="appliance">
+                <h1>Appliance Usage</h1>
+                <div class="content-container">
+                    <ul>
+                        <li><i class="fas fa-shower"></i> Water heater</li>
+                        <li><i class="fas fa-faucet"></i> Stove</li>
+                    </ul>
+        
+                    <div id="measurements">
+                        <ul>
+                            <li>20 <p4>m³</p4></li>
+                            <li>5 <p4>m³</p4></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="usage">
+            <h2>Usage Limit <i class="fas fa-toggle-on"></i></h2>
+            <p5>Limit Percentage</p5> <p5>40%</p5>
+        </div>
+    </div>
+
+<script>
+// Update gas usage display
+function updateGasUsage() {
+    const gasUsage = document.getElementById('gas-usage');
+    const totalGasCubicMeters = parseFloat(localStorage.getItem('totalGasCubicMeters')) || 0;
+    gasUsage.textContent = `${totalGasCubicMeters.toFixed(2)} m³ currently available`;
+}
+
+// Run on page load
+updateGasUsage();
+
+// Pie Chart (with Center Text)
+const pieCanvas = document.getElementById("pieCanvas").getContext("2d");
+
+Chart.register({
+    id: 'centerText',
+    beforeDraw(chart) {
+        if (chart.canvas.id === 'pieCanvas') { // Ensure this only applies to the Pie Chart
+            const ctx = chart.ctx;
+            const { width, height } = chart;
+
+            // Clear the center space to prevent duplicate rendering
+            ctx.clearRect(0, 0, width, height);
+
+            // Prepare to draw the text
+            const fontSize = Math.floor(width / 8); // Adjust font size proportionally
+            const text = "55%";
+            ctx.font = `${fontSize}px Arial`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = "black";
+
+            const xPos = width / 2;
+            const yPos = height / 2;
+            ctx.fillText(text, xPos, yPos);
+        }
+    }
+});
+
+const pieChart = new Chart(pieCanvas, {
+    type: "doughnut",
+    data: {
+        datasets: [{
+            data: [55, 45],
+            backgroundColor: ["pink", "darkgrey"],
+            borderWidth: 0
+        }]
+    },
+    options: {
+        responsive: false,
+        cutout: "70%",
+        plugins: {
+            tooltip: {
+                enabled: false
+            }
+        },
+        animation: {
+            duration: 0
+        }
+    }
+});
+
+// Bar Graph (No Center Text Plugin)
+const barCanvas = document.getElementById("barCanvas").getContext("2d");
+
+const barChart = new Chart(barCanvas, {
+    type: "bar",
+    data: {
+        labels: ["", "", ""],
+        datasets: [{
+            data: [70, 50, 70],
+            backgroundColor: ["lightgray", "lightgray", "lightgray"],
+            borderRadius: 10,
+            barThickness: 30,
+        }]
+    },
+    options: {
+        responsive: false,
+        plugins: {
+            legend: {
+                display: false
+            }
+        },
+        scales: {
+            x: {
+                display: false,
+                stacked: true
+            },
+            y: {
+                display: false
+            }
+        },
+        layout: {
+            padding: {
+                left: 130,
+                right: 0,
+                top: 0,
+                bottom: 20
+            }
+        }
+    }
+});
+</script>
+
+</body>
+</html>

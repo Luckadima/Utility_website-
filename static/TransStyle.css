@@ -1,0 +1,86 @@
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f4f6f8;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    height: 100vh;
+  }
+  h1 {
+    margin-left: 38%;
+    color: #0a4d8c;
+    margin-top: -45%;
+  }
+  .transaction-table {
+    width: 80%;
+    max-width:700px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    margin-left: 30%;
+  }
+  .transaction-table thead {
+    background: #0a4d8c;
+    color: white;
+  }
+  .transaction-table th, .transaction-table td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+  .transaction-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+  }
+  .transaction-type {
+    font-weight: 600;
+    text-transform: capitalize;
+  }
+  .amount {
+    color: #0a4d8c;
+    font-weight: bold;
+  }
+  .no-transactions {
+    text-align: center;
+    margin-top: 50px;
+    color: #777;
+    font-size: 1.1em;
+  }
+  .sidebar {
+    line-height: 1.5;
+    width: 250px;
+    background-color: black;
+    color: white;
+    padding: 5px;
+    height: 100%; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 25px;
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li#signout a {
+    margin-top: 155%;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.sidebar ul li a:hover {
+    background-color: darkblue;
+}

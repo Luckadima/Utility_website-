@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Profile</title>
+  <link rel="stylesheet" href="/UserStyle.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body>
+
+  <!-- Back to AllUtility -->
+  <a href="/AllUtility.html"><i class="fas fa-arrow-left"></i></a>
+
+  <div class="profile-container">
+    <img src="/Images/default-profile.png" id="profileImage" class="profile-pic" alt="Profile Picture" />
+    <br />
+    <label for="imageUpload">Upload Picture</label>
+    <input type="file" id="imageUpload" accept="image/*">
+
+    <h2 id="userName">Your Name</h2>
+    <p id="userEmail">Email: user@example.com</p>
+    <p id="electricityMeter">Electricity Meter: -</p>
+    <p id="waterMeter">Water Meter: -</p>
+  </div>
+
+  <script>
+    // Load user data from localStorage
+    const user = JSON.parse(localStorage.getItem("userData"));
+
+    if (user) {
+      document.getElementById("userName").innerText = `${user.name} ${user.surname}`;
+      document.getElementById("userEmail").innerText = `Email: ${user.email}`;
+      document.getElementById("electricityMeter").innerText = `Electricity Meter: ${user.electricityMeter}`;
+      document.getElementById("waterMeter").innerText = `Water Meter: ${user.waterMeter}`;
+      document.getElementById("gasMeter").innerText = `Gas Meter: ${user.gasMeter}`;
+    }
+
+    // Load saved profile picture from localStorage
+    const savedImage = localStorage.getItem("profileImage");
+    if (savedImage) {
+      document.getElementById("profileImage").src = savedImage;
+    }
+
+    // Handle image upload
+    document.getElementById("imageUpload").addEventListener("change", function () {
+      const file = this.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function (e) {
+          document.getElementById("profileImage").src = e.target.result;
+          localStorage.setItem("profileImage", e.target.result);
+        };
+        reader.readAsDataURL(file);
+      }
+    });
+  </script>
+</body>
+</html>
+

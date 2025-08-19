@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="/TransStyle.css">
+<script src="https://kit.fontawesome.com/fc7f46e176.js" crossorigin="anonymous"></script>
+
+<title>Transaction History</title>
+</head>
+<body>
+        <div class="sidebar">
+        <h2>Bill</h2>
+        <ul>
+            <li><a href="/LandingPage.html">Home</a></li>
+            <li id="AllUtility"><a href="/AllUtility.html">Utility Usage & Alerts</a></li>
+            <li><a href="/Payment.html">Payment & Top-up</a></li>
+            <li><a href="/Transaction.html">Transactions</a></li>
+            <li id="signout">
+                <a href="/LogIn.html"><i class="fa-solid fa-arrow-right-from-bracket" style="margin-right: 10%;"></i>SignOut</a>
+            </li>
+        </ul>
+    </div>
+
+<h1>Utility Payment Transaction History</h1>
+
+<table class="transaction-table" id="transactionTable">
+  <thead>
+    <tr>
+      <th>Date & Time</th>
+      <th>Utility</th>
+      <th>Units</th>
+      <th>Amount (ZAR)</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody id="transactionBody">
+    <!-- Transactions will be inserted here -->
+  </tbody>
+</table>
+
+<p class="no-transactions" id="noTransactions" style="display:none;">No transactions found.</p>
+
+<script>
+  // Load transactionHistory from localStorage (array of strings like "Electricity purchased: 50.00 kWh for R200 at 01/01/2025, 14:00")
+  const history = JSON.parse(localStorage.getItem('transactionHistory')) || [];
+
+  const tbody = document.getElementById('transactionBody');
+  const noTxMsg = document.getElementById('noTransactions');
+
+  if(history.length === 0){
+    noTxMsg.style.display = 'block';
+  } else {
+    noTxMsg.style.display = 'none';
+
+    history.forEach(entry => {
+      // Parse the string to extract data:
+      // Format example:
+      // "Electricity purchased: 50.00 kWh for R200 at 01/01/2025, 14:00"
+      const regex = /^(Electricity|Water|Gas) purchased: ([\d.]+) (\w+) for R([\d.]+) at (.+)$/i;
+      const match = entry.match(regex);
+
+      let dateTime = '-';
+      let utility = '-';
+      let units = '-';
+      let amount = '-';
+      let description = entry;
+
+      if(match){
+        utility = match[1];
+        units = `${match[2]} ${match[3]}`;
+        amount = parseFloat(match[4]).toFixed(2);
+        dateTime = match[5];
+        description = `${utility} payment`;
+      }
+
+      const tr = document.createElement('tr');
+      tr.innerHTML = `
+        <td>${dateTime}</td>
+        <td class="transaction-type">${utility}</td>
+        <td>${units}</td>
+        <td class="amount">R${amount}</td>
+        <td>${description}</td>
+      `;
+      tbody.appendChild(tr);
+    });
+  }
+</script>
+
+</body>
+</html>

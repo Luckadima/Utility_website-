@@ -1,0 +1,218 @@
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    height: 100vh;
+}
+
+.sidebar {
+    line-height: 1.5;
+    width: 220px;
+    background-color: black;
+    color: white;
+    padding: 15px;
+    height: 135%; 
+    box-shadow: 2px 0 5px rgba(0,0,0,0.1);
+}
+
+.sidebar h2 {
+    text-align: center;
+}
+
+.sidebar ul {
+    list-style-type: none;
+    padding: 25px;
+    
+}
+
+.sidebar ul li {
+    margin: 15px 0;
+}
+
+.sidebar ul li#signout a {
+    margin-top: 155%;
+}
+
+.sidebar ul li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.sidebar ul li a:hover {
+    background-color: darkblue;
+}
+
+#AllUtility {
+    background-color: darkblue;
+    border-radius: 5px;
+}
+
+.content {
+    flex: 1;
+    padding: 5px;
+    background-color: white;
+    margin-top: -1%;
+}
+
+#CurrentContainer {
+    display: flex;
+    justify-content: space-between;  
+    gap: 10px; 
+    margin: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-left: 10%;
+}
+#CurrentContainer h1 {
+    margin-left: -10%;
+    
+}
+
+.column {
+    flex: 1; 
+    display: flex;
+    flex-direction: column; 
+    gap: 30px; 
+    font-size: 13px;
+}
+
+.column:hover {
+    cursor: pointer;
+}
+
+.column a {
+    text-decoration: none;
+    color: white;
+}
+#Electricitypercent{
+    background-color: black;
+    margin-left: -15%;
+    width: 70%;
+    border-radius: 5px;
+    height: 100px;
+    color: white;
+    
+}
+
+#Electricitypercent:hover{
+    background-color: purple;
+}
+#Electricitypercent p{
+    justify-self: center;
+    font-size: 30px;
+}
+
+#Waterpercent{
+    background-color: black;
+    margin-left: -15%;
+    width: 70%;
+    border-radius: 5px;
+    height: 100px;
+    color: white;
+}
+#Waterpercent:hover{
+    background-color: lightgoldenrodyellow;
+}
+#Waterpercent p{
+    justify-self: center;
+    font-size: 30px;
+}
+#Waterpercent p:hover{
+    justify-self: center;
+    font-size: 30px;
+    color: black;
+}
+
+#Gaspercent{
+    background-color: black;
+    margin-left: -15%;
+    width: 70%;
+    border-radius: 5px;
+    height: 100px;
+    color: white;
+}
+#Gaspercent:hover{
+    background-color: palevioletred;
+
+}
+#Gaspercent p{
+    justify-self: center;
+    font-size: 30px;
+}
+
+#Loadsheddingcontent{
+    background-color: lightgray;
+    margin-left: 6%;
+    width: 40%;
+    border-radius: 5px;
+    height: 100px;
+    padding: 20px;
+    font-family: 'Poppins', sans-serif;
+    margin-top: 8%;
+    cursor: pointer;
+}
+
+#Loadsheddingcontent p1 {
+    justify-self: center;
+    font-weight: bold;
+}
+
+#Loadsheddingcontent p2 {
+    color: red;
+    font-weight: bold;
+}
+
+#Transactions{
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    margin-left: 8%;
+    padding-top: 40px;
+}
+
+.icons {
+    float: right; 
+    margin-right: 10px; 
+    word-spacing: 20px;
+    
+}
+.icons a{
+    color: black;
+    text-decoration: none;
+    size: 10px;
+}
+.icons a:hover{
+    cursor: pointer;
+    color: darkblue;
+
+}
+
+
+.icons:hover{
+    cursor: pointer;
+    color: darkblue;
+}
+
+#signout {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+#signout a {
+    text-decoration: none;
+    color: inherit;
+    display: flex; 
+    align-items: center;
+}
+
+#signout i {
+    margin-left: 5px; 
+}
+h2 {
+  font-size: 18px;
+  margin: 10px 0;
+}

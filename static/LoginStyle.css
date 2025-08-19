@@ -1,0 +1,173 @@
+body {
+    background-color: whitesmoke;
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    height: 100%;
+}
+
+/* #LoginContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 40px;
+    margin: 40px auto;
+    max-width: 1000px;
+} */
+
+.column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 15px;
+    padding: 40px;
+    background-color: whitesmoke;
+}
+
+#LoginContainer {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+    margin: 0; 
+    gap: 0;
+}
+
+.img-container {
+    flex: 1;
+    height: 100%;
+}
+
+.img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; 
+    object-position: left;
+}
+
+
+h1 {
+    font-weight: 100;
+    align-self: flex-start;
+    margin-left: 1%;
+    font-size: 18px;
+    font-family:'Times New Roman', Times, serif;
+
+
+}
+
+h2 {
+    margin-bottom: 25px;
+    font-weight: 300;
+    font-family:'Times New Roman', Times, serif;
+    align-self: flex-start;
+
+}
+
+.input-wrapper {
+    position: relative;
+    width: 60%;
+}
+
+.input-wrapper i {
+    position: absolute;
+    top: 50%;
+    left: 12px;
+    transform: translateY(-50%);
+    color: #555;
+    font-size: 14px;
+}
+
+.input-wrapper input {
+    width: 100%;
+    padding: 10px 10px 10px 35px;
+    background-color: lightgray;
+    border: none;
+    border-radius: 5px;
+    height: 40px;
+    box-sizing: border-box;
+}
+
+.input-wrapper input:hover {
+    border: 2px solid blue;
+}
+
+
+.input-wrapper i.fas.fa-lock
+{
+    left: 10px;
+    top: 75%;
+}
+
+.input-wrapper i.fas.fa-eye,
+.input-wrapper i.fas.fa-eye-slash {
+    left: 400px;
+    cursor: pointer;
+    top: 80%;
+    pointer-events: auto; 
+}
+
+#rememberMeContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 60%;
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+#rememberMeContainer label {
+    color: black;
+    margin-left: 5px;
+    flex-grow: 1;
+}
+
+#rememberMeContainer a {
+    font-size: 13px;
+    color: #3f7aff;
+    text-decoration: none;
+}
+
+#rememberMeContainer a:hover {
+    text-decoration: underline;
+}
+
+button {
+    margin-top: 20px;
+    width: 60%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: darkblue;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2f5aff;
+}
+
+button a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+p {
+    font-size: 14px;
+    margin-top: 10px;
+}
+
+p a {
+    font-size: 14px;
+    color: #3f7aff;
+    text-decoration: none;
+}
+
+p a:hover {
+    text-decoration: underline;
+}
