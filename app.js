@@ -15,6 +15,11 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(express.static(path.join(__dirname, 'templates')));
 
+// Root route to serve AllUtility.html
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'templates', 'AllUtility.html'));
+});
+
 // Payment POST endpoint
 app.post('/api/pay', (req, res) => {
   try {
@@ -140,6 +145,7 @@ const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
 });
+
 
 
 

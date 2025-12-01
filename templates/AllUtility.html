@@ -78,13 +78,13 @@
         <div id="Transactions">
             <p>Recent Transactions</p>
             <div id="history">
-                <!-- Recent transaction data will appear here -->
+                <!-- Recent transaction data is here -->
             </div>
         </div>
     </div>
 
 <script>
-    // Load and display all transactions from localStorage
+    //all transactions from localStorage
     window.addEventListener('DOMContentLoaded', () => {
         const historyDiv = document.getElementById('history');
         let history = JSON.parse(localStorage.getItem('transactionHistory')) || [];

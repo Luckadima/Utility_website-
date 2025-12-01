@@ -159,3 +159,39 @@ h1 {
     outline: none !important; /* Remove default blue */
     border: 1px solid whitesmoke !important; /* Add your own style if needed */
 }
+
+/* --- Mobile responsiveness --- */
+@media (max-width: 768px) {
+  #LoginContainer {
+    flex-direction: column;
+    margin: 10px 5%;
+  }
+
+  .column {
+    min-width: 100%;
+    width: 100%;
+  }
+
+  #LoginContainer input {
+    width: 100%;
+    padding-left: 35px;
+    padding-right: 35px;
+  }
+
+  button {
+    width: 100%;
+    margin-top: 15px;
+  }
+
+  #titles p {
+    font-size: 20px;
+    margin-left: 3%;
+    margin-top: 1%;
+  }
+
+  #billImage {
+    margin-right: 0;
+    width: 100%;
+  }
+}
+

@@ -258,3 +258,52 @@ hr {
 #signout i {
   margin-left: 5px;
 }
+
+/* --- Mobile responsiveness for Payments page --- */
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: relative;
+  }
+
+  #content {
+    margin-left: 0;
+    padding: 15px;
+  }
+
+  #Transactions input[type="number"],
+  #Transactions input[type="text"] {
+    width: 100%;
+  }
+
+  #pay {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  #column {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  #card {
+    flex-grow: 1;
+    width: 100%;
+  }
+
+  #ai-panel {
+    width: 90%;
+    right: 5%;
+    top: 10%;
+    padding: 10px;
+  }
+
+  #ai-toggle-button {
+    top: 10px;
+    right: 10px;
+    width: 35px;
+    height: 35px;
+    font-size: 20px;
+  }
+}

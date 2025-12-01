@@ -173,3 +173,37 @@ canvas {
   margin-left: 18%;
 }
 
+@media (max-width: 1024px) {
+  .sidebar {
+    width: 200px;
+  }
+  #content i {
+    margin-left: 5px;
+  }
+  #Graph {
+    margin-left: 5%;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    flex-direction: column;
+  }
+  .sidebar {
+    width: 100%;
+    height: auto;
+  }
+  #column, #column2 {
+    flex-direction: column;
+    margin-left: 0;
+  }
+  .content-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+  #Graph {
+    margin-left: 0;
+  }
+}
+
+

@@ -149,4 +149,61 @@ a{
     width: 100%; /* Full width for consistency */
 }
 
+/* --- Mobile responsiveness --- */
+@media (max-width: 768px) {
+  #headtitles {
+    margin-left: 10%;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  #title {
+    font-size: 24px;
+    margin-left: 0;
+  }
+
+  #titles {
+    font-size: 10px;
+    margin-left: 0;
+  }
+
+  ul {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  #sub-content1 {
+    font-size: 36px;
+    letter-spacing: 4px;
+  }
+
+  #sub-content2 {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  #LandingPageImage img {
+    width: 80%;
+    height: auto;
+    margin-left: 10%;
+    margin-top: -10%;
+  }
+
+  .footer {
+    padding: 20px;
+    font-size: 12px;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .footer-links {
+    flex-direction: column;
+    gap: 20px;
+  }
+}
+
+
 

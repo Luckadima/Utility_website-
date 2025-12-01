@@ -126,3 +126,55 @@ button:hover {
 #headtitles{
     background-color: white;
 }
+
+/* Mobile responsiveness for Contact Us page */
+@media (max-width: 768px) {
+    .contact-container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px 10px;
+    }
+
+    .contact-img {
+        width: 100%;
+        min-width: 0;
+        height: 200px; /* optional, keeps image visible without overflow */
+        margin-bottom: 20px;
+    }
+
+    .contact-img img {
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .contact-form {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .input-wrapper input,
+    .input-wrapper textarea,
+    .input-wrapper-message input,
+    .input-wrapper-message textarea {
+        width: 100%;
+        padding: 12px 12px 12px 35px;
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+
+    .contact-form h2 {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .contact-form p {
+        font-size: 14px;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+}
+

@@ -53,3 +53,35 @@
       top: 20px;
       left: 20px;
     }
+
+    @media (max-width: 768px) {
+  .profile-container {
+    width: 90%;
+    padding: 15px;
+    margin: 30px auto;
+  }
+
+  .profile-pic {
+    width: 100px;
+    height: 100px;
+  }
+
+  h2 {
+    font-size: 18px;
+  }
+
+  p {
+    font-size: 14px;
+  }
+
+  label {
+    padding: 5px 10px;
+    font-size: 14px;
+  }
+
+  .fa-arrow-left {
+    font-size: 18px;
+    top: 15px;
+    left: 15px;
+  }
+}
